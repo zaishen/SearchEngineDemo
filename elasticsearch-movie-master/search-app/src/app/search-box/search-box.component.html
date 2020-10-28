@@ -1,0 +1,101 @@
+<div class="card">
+  <div class="card-header">
+    Search
+  </div>
+  <div class="card-body">
+    <form [formGroup]="searchForm">
+      <div class="form-group">
+        <label for="name">Movie name</label>
+        <input formControlName="title" id="name" type="text" class="form-control" placeholder="Movie name">
+      </div>
+      <div class="form-group">
+        <label for="director">Director</label>
+        <select formControlName="director" id="director" class="form-control">
+          <option value="">::Select Director::</option>
+          <option *ngFor="let director of directors" value="{{director}}">{{director}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="distributor">Distributor</label>
+        <select formControlName="distributor" id="distributor" class="form-control">
+          <option value="">::Select Distributor::</option>
+          <option *ngFor="let distributor of distributors" value="{{distributor}}">{{distributor}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="type">Type</label>
+        <select formControlName="type" id="type" class="form-control">
+          <option value="">::Select Type::</option>
+          <option *ngFor="let type of types" value="{{type}}">{{type}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="budget">Production Budget</label>
+        <div class="form-check">
+          <input
+          class="form-check-input"
+          formControlName="budgetOperator"
+          type="radio"
+          name="budgetOperator"
+          value="">
+          <label class="form-check-label" for="budgetOperator">
+            None
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+          class="form-check-input"
+          formControlName="budgetOperator"
+          type="radio"
+          name="budgetOperator"
+          value="lt">
+          <label class="form-check-label" for="budgetOperator">
+            Less than
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+          class="form-check-input"
+          formControlName="budgetOperator"
+          type="radio"
+          name="budgetOperator"
+          value="gt">
+          <label class="form-check-label" for="budgetOperator">
+            More than
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+          class="form-check-input"
+          formControlName="budgetOperator"
+          type="radio"
+          name="budgetOperator"
+          value="eq">
+          <label class="form-check-label" for="budgetOperator">
+            Equal to
+          </label>
+        </div>
+        <div *ngIf="searchForm.get('budgetOperator').value !== ''">
+          <input type="range" class="form-control-range" id="budget">
+          <label formControlName="productionBudgetMin" for="budget">USD$ 100,000.00</label>
+        </div>
+        <div class="form-check" *ngIf="searchForm.get('budgetOperator').value !== ''">
+          <input
+          class="form-check-input"
+          formControlName="budgetOperator"
+          type="radio"
+          name="budgetOperator"
+          value="bt">
+          <label class="form-check-label" for="budgetOperator" >
+            Between
+          </label>
+        </div>
+        <div *ngIf="searchForm.get('budgetOperator').value === 'bt'">
+          <input formControlName="productionBudgetMax" type="range" class="form-control-range" id="budget">
+          <label for="budget">USD$ 100,000.00</label>
+        </div>
+      </div>
+        <button class="btn btn-primary col-lg-12 col-md-12" (click)="onSearch()">Search Movie</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="card h-100">
+  <div class="card-body">
+    <div>
+      <strong>Title: </strong>
+      <span>{{ movie.Title }}</span>
+    </div>
+    <div>
+      <strong>Director: </strong>
+      <span>{{ movie.Director }}</span>
+    </div>
+    <div>
+      <strong>Distributor: </strong>
+      <span>{{ movie.Distributor }}</span>
+    </div>
+    <div>
+      <strong>Release Date: </strong>
+      <span>{{ movie.Release_Date }}</span>
+    </div>
+    <div>
+      <strong>Running Time: </strong>
+      <span>{{ movie.Running_Time_min }} min</span>
+    </div>
+    <div>
+      <strong>Production Budget: </strong>
+      <span>USD$ {{ movie.Production_Budget | number }}</span>
+    </div>
+    <div>
+      <strong>Wordwide Gross: </strong>
+      <span>USD$ {{ movie.Worldwide_Gross | number }}</span>
+    </div>
+    <div>
+      <strong>Distributor: </strong>
+      <span>{{ movie.Distributor }}</span>
+    </div>
+    <div>
+      <strong>Genre Type: </strong>
+      <span>{{ movie.Creative_Type }}</span>
+    </div>
+  </div>
+  <div class="card-footer">
+    <span class="text-muted">
+      IMDB Rating 
+      <span *ngFor="let star of getStars()">
+        <i *ngIf="star">&#9733;</i>
+        <i *ngIf="!star">&#9734;</i>
+      </span>
+      <br>
+      Tomatazos: {{ movie.Rotten_Tomatoes_Rating ? movie.Rotten_Tomatoes_Rating + '%' : 'none'}}
+    </span>
+    
+  </div>
+</div>
